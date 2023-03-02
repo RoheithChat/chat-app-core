@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Chat</title>
+    <style>
+        .inpt {
+            height: 550px;
+            width: 1325px;
+            border: 2px solid black;
+            border-radius: 12px;
+            padding: 10px;
+            font: 16px/26px Georgia, Garamond, Serif;
+            overflow: auto;
+        }
+        input{
+            width: calc(100% - 80px);
+            display: inline-block;
+            vertical-align: middle;
+        }
+        button {
+            width: 80px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="inpt" id = "inpts">
+        
+    </div>
+    <br>
+    <div class="input-group mb-3">
+    <input type="text" class="form-control">
+     <button class="btn btn-primary" onclick="execute()">Send</button>
+</div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        x = params.get("name");
+        function execute(){
+            const resultDiv = document.getElementById('inpts');
+            var request = new XMLHttpRequest();
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      resultDiv.innerHTML = this.responseText
+    }
+  };
+  request.open("GET", "Execute.php", true);
+  request.send();
+        }
+    </script>
+</body>
+</html>
